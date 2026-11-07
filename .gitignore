@@ -3,6 +3,8 @@
 build.xml
 manifest.mf
 nbproject/
+.idea
+TransPlus.iml
 # Log file
 *.log
 

@@ -10,7 +10,7 @@ import java.time.LocalDate;
  *
  * @author sagaz
  */
-public class Carregamento {
+public class Carregamento implements Comparable<Carregamento> {
     private Long idCarregamento;
     private Cliente clienteSolicitador;
     private Veiculo veiculoUsado;
@@ -93,6 +93,11 @@ public class Carregamento {
 
     public void setCustoCarregamento(Double custoCarregamento) {
         this.custoCarregamento = custoCarregamento;
+    }
+    @Override
+    public int compareTo(Carregamento other) {
+        // Compara diretamente as matrículas
+        return Long.compare(this.idCarregamento, other.idCarregamento);
     }
     
     

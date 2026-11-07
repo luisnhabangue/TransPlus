@@ -10,7 +10,8 @@ import model.enums.TipoVeiculo;
  *
  * @author sagaz
  */
-public class Veiculo {
+public class Veiculo implements Comparable<Veiculo>{
+   // private Long id;
     private String matricula;
     private String marca;
     private String modelo;
@@ -19,6 +20,7 @@ public class Veiculo {
     private Proprietario proprietario;
 
     public Veiculo(String matricula, String marca, String modelo, Double capacidadeCarga, TipoVeiculo tipoVeiculo, Proprietario proprietario) {
+        //this.id = id;
         this.matricula = matricula;
         this.marca = marca;
         this.modelo = modelo;
@@ -27,6 +29,15 @@ public class Veiculo {
         this.proprietario = proprietario;
     }
 
+
+
+    public Proprietario getProprietario() {
+        return proprietario;
+    }
+
+    public void setProprietario(Proprietario proprietario) {
+        this.proprietario = proprietario;
+    }
 
     public String getMatricula() {
         return matricula;
@@ -66,6 +77,11 @@ public class Veiculo {
 
     public void setTipoVeiculo(TipoVeiculo tipoVeiculo) {
         this.tipoVeiculo = tipoVeiculo;
+    }
+
+    @Override
+    public int compareTo(Veiculo o) {
+        return this.matricula.compareTo(o.matricula);
     }
     
     

@@ -8,7 +8,7 @@ package model;
  *
  * @author sagaz
  */
-public class Cliente {
+public class Cliente implements Comparable<Cliente>{
     private Long id;
     private  String nome;
     private String contacto;
@@ -53,6 +53,12 @@ public class Cliente {
         this.localizacao = localizacao;
     }
 
+    @Override
+    public int compareTo(Cliente o) {
+return Long.compare(this.id, o.id);
+        }
+
+    
     @Override
     public String toString() {
         return "Cliente{" + "id=" + id + ", nome=" + nome + ", contacto=" + contacto + ", localizacao=" + localizacao + '}';

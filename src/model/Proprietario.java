@@ -11,8 +11,8 @@ import java.util.List;
  *
  * @author sagaz
  */
-public class Proprietario {
-    private Long id;
+public class Proprietario implements Comparable<Proprietario>{
+  //  private Long id;
     private String documentoId;
     private String nome;
     private String contacto;
@@ -20,20 +20,12 @@ public class Proprietario {
     //Aqui iremos implementar a nossa TAD para guardar os veiculos do proprietario
     private List<Veiculo> veiculos;
 
-    public Proprietario(Long id, String documentoId, String nome, String contacto) {
-        this.id =id;
+    public Proprietario(String documentoId, String nome, String contacto) {
+       // this.id =id;
         this.documentoId = documentoId;
         this.nome = nome;
         this.contacto = contacto;
         this.veiculos = new ArrayList<>();
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
     
 
@@ -69,6 +61,12 @@ public class Proprietario {
     public void setContacto(String contacto) {
         this.contacto = contacto;
     }
+
+    @Override
+    public int compareTo(Proprietario o) {
+        return this.documentoId.compareTo(o.documentoId);
+        
+        }
     
     
 }

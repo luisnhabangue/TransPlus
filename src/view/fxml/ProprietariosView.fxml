@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="22.0" stylesheets="@../css/styles.css"
+      xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controller.ProprietariosController">
+
+    <!-- Cabeçalho da Página -->
+    <HBox alignment="CENTER_LEFT">
+        <VBox spacing="4.0">
+            <Label text="A SUA REDE DE PARCEIROS" styleClass="eyebrow"/>
+            <Label text="Proprietários e Transportadores" styleClass="page-title"/>
+            <Label text="Gira os seus parceiros e mantenha a sua operação em movimento." styleClass="page-description"/>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="+  Novo Proprietário" styleClass="btn-primary" onAction="#limparFormulario"/>
+    </HBox>
+
+    <!-- Cartões KPI -->
+    <GridPane hgap="18.0">
+        <columnConstraints>
+            <ColumnConstraints percentWidth="33.33"/>
+            <ColumnConstraints percentWidth="33.33"/>
+            <ColumnConstraints percentWidth="33.33"/>
+        </columnConstraints>
+
+        <VBox spacing="6.0" styleClass="stat-card" GridPane.columnIndex="0">
+            <HBox alignment="CENTER_LEFT">
+                <Label text="Proprietários registados" styleClass="stat-label"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <StackPane styleClass="icon-box-blue">
+                    <Label text="👥" style="-fx-text-fill: #3A60BC;"/>
+                </StackPane>
+            </HBox>
+            <Label fx:id="lblTotalProprietarios" text="08" styleClass="stat-value"/>
+            <Label text="Parceiros que fazem parte da sua rede" styleClass="stat-note"/>
+        </VBox>
+
+        <VBox spacing="6.0" styleClass="stat-card" GridPane.columnIndex="1">
+            <HBox alignment="CENTER_LEFT">
+                <Label text="Veículos associados" styleClass="stat-label"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <StackPane styleClass="icon-box-orange">
+                    <Label text="🚛" style="-fx-text-fill: #DD7D36;"/>
+                </StackPane>
+            </HBox>
+            <Label fx:id="lblTotalVeiculos" text="12" styleClass="stat-value"/>
+            <Label text="Uma frota pronta para ir mais longe" styleClass="stat-note"/>
+        </VBox>
+
+        <VBox spacing="6.0" styleClass="stat-card" GridPane.columnIndex="2">
+            <HBox alignment="CENTER_LEFT">
+                <Label text="Transportes realizados" styleClass="stat-label"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <StackPane styleClass="icon-box-green">
+                    <Label text="📦" style="-fx-text-fill: #369883;"/>
+                </StackPane>
+            </HBox>
+            <Label fx:id="lblTotalTransportes" text="06" styleClass="stat-value"/>
+            <Label text="Ligações que movimentam negócios" styleClass="stat-note"/>
+        </VBox>
+    </GridPane>
+
+    <!-- Cartão de Formulário (Cadastro / Edição) -->
+    <VBox styleClass="card">
+        <HBox alignment="CENTER_LEFT" spacing="12.0">
+            <padding>
+                <Insets top="20.0" right="22.0" bottom="0.0" left="22.0"/>
+            </padding>
+            <StackPane styleClass="card-title-icon">
+                <Label text="👤" style="-fx-text-fill: #657DA6;"/>
+            </StackPane>
+            <VBox spacing="2.0">
+                <Label fx:id="lblTituloForm" text="Cadastrar proprietário" styleClass="card-title"/>
+                <Label text="Adicione ou actualize os dados de um parceiro transportador." styleClass="card-subtitle"/>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label text="* Campos obrigatórios" styleClass="required-note"/>
+        </HBox>
+
+        <GridPane hgap="18.0" vgap="16.0">
+            <padding>
+                <Insets top="20.0" right="22.0" bottom="22.0" left="22.0"/>
+            </padding>
+            <columnConstraints>
+                <ColumnConstraints percentWidth="33.33"/>
+                <ColumnConstraints percentWidth="33.33"/>
+                <ColumnConstraints percentWidth="33.33"/>
+            </columnConstraints>
+
+            <VBox spacing="6.0" GridPane.columnIndex="0">
+                <HBox spacing="3.0">
+                    <Label text="Nome Completo" styleClass="field-label"/>
+                    <Label text="*" styleClass="required-star"/>
+                </HBox>
+                <TextField fx:id="txtNomeProprietario" promptText="Ex.: António João Machava"/>
+            </VBox>
+
+            <VBox spacing="6.0" GridPane.columnIndex="1">
+                <HBox spacing="3.0">
+                    <Label text="Contacto (Telefone)" styleClass="field-label"/>
+                    <Label text="*" styleClass="required-star"/>
+                </HBox>
+                <TextField fx:id="txtContactoProprietario" promptText="+258 84 000 0000"/>
+            </VBox>
+
+            <VBox spacing="6.0" GridPane.columnIndex="2">
+                <HBox spacing="3.0">
+                    <Label text="Documento de Identificação (BI/NUIT)" styleClass="field-label"/>
+                    <Label text="*" styleClass="required-star"/>
+                </HBox>
+                <TextField fx:id="txtDocumentoProprietario" promptText="Ex.: 110100234567A"/>
+            </VBox>
+        </GridPane>
+
+        <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="form-footer">
+            <Label text="🛡  Informação organizada e persistida em ficheiro de objectos."
+                   style="-fx-font-size: 10.5px; -fx-text-fill: #A1ABBA;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button fx:id="btnCancelarEdicao" text="Cancelar" visible="false" managed="false"
+                    styleClass="btn-secondary" onAction="#limparFormulario"/>
+            <Button text="✓  Guardar Proprietário" styleClass="btn-primary" onAction="#guardarProprietario"/>
+        </HBox>
+    </VBox>
+
+    <!-- Cartão da Tabela -->
+    <VBox styleClass="card">
+        <HBox alignment="CENTER_LEFT" spacing="12.0">
+            <padding>
+                <Insets top="18.0" right="22.0" bottom="18.0" left="22.0"/>
+            </padding>
+            <Label text="Proprietários registados" styleClass="card-title"/>
+            <Label fx:id="lblBadgeProprietarios" text="8" styleClass="count-badge"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <TextField fx:id="txtPesquisarProprietario" prefWidth="230.0" promptText="Pesquisar proprietário..."/>
+            <Button text="⬇  Exportar" styleClass="btn-secondary" onAction="#exportarProprietarios"/>
+        </HBox>
+
+        <TableView fx:id="tabelaProprietarios" prefHeight="290.0">
+            <columns>
+                <TableColumn fx:id="colPropNome" text="Nome do proprietário" prefWidth="280.0"/>
+                <TableColumn fx:id="colPropContacto" text="Contacto" prefWidth="190.0"/>
+                <TableColumn fx:id="colPropDocumento" text="Documento de ID" prefWidth="200.0"/>
+                <TableColumn fx:id="colPropQtdVeiculos" text="Qtd. de Veículos" prefWidth="150.0"/>
+                <TableColumn fx:id="colPropAcoes" text="Ações" prefWidth="140.0"/>
+            </columns>
+        </TableView>
+    </VBox>
+
+    <!-- Nota Inferior -->
+    <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="bottom-note">
+        <Label text="ℹ" style="-fx-text-fill: #8299BE; -fx-font-size: 14px;"/>
+        <Label text="Uma rede bem organizada faz a diferença. Mantenha os contactos dos proprietários actualizados para uma comunicação mais ágil."
+               styleClass="bottom-note-text"/>
+    </HBox>
+</VBox>

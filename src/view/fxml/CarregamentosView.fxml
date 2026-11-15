@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="22.0" stylesheets="@../css/styles.css"
+      xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controller.CarregamentosController">
+
+    <!-- Cabeçalho -->
+    <HBox alignment="CENTER_LEFT">
+        <VBox spacing="4.0">
+            <Label text="DO PONTO DE PARTIDA AO DESTINO" styleClass="eyebrow"/>
+            <Label text="Registo e Histórico de Carregamentos" styleClass="page-title"/>
+            <Label text="Registe transportes, valide capacidades e acompanhe cada entrega." styleClass="page-description"/>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="+  Novo Carregamento" styleClass="btn-primary" onAction="#limparFormulario"/>
+    </HBox>
+
+    <!-- Cartões KPI -->
+    <GridPane hgap="18.0">
+        <columnConstraints>
+            <ColumnConstraints percentWidth="33.33"/>
+            <ColumnConstraints percentWidth="33.33"/>
+            <ColumnConstraints percentWidth="33.33"/>
+        </columnConstraints>
+
+        <VBox spacing="6.0" styleClass="stat-card" GridPane.columnIndex="0">
+            <HBox alignment="CENTER_LEFT">
+                <Label text="Transportes realizados" styleClass="stat-label"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <StackPane styleClass="icon-box-blue">
+                    <Label text="📦" style="-fx-text-fill: #3A60BC;"/>
+                </StackPane>
+            </HBox>
+            <Label fx:id="lblQtdTransportes" text="06" styleClass="stat-value"/>
+            <Label text="Todo o histórico da sua operação" styleClass="stat-note"/>
+        </VBox>
+
+        <VBox spacing="6.0" styleClass="stat-card" GridPane.columnIndex="1">
+            <HBox alignment="CENTER_LEFT">
+                <Label text="Mercadoria transportada" styleClass="stat-label"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <StackPane styleClass="icon-box-orange">
+                    <Label text="🚛" style="-fx-text-fill: #DD7D36;"/>
+                </StackPane>
+            </HBox>
+            <HBox alignment="BASELINE_LEFT" spacing="6.0">
+                <Label fx:id="lblTotalMercadoria" text="60,3" styleClass="stat-value"/>
+                <Label text="toneladas" styleClass="stat-unit"/>
+            </HBox>
+            <Label text="Carga total dos serviços realizados" styleClass="stat-note"/>
+        </VBox>
+
+        <VBox spacing="6.0" styleClass="stat-card" GridPane.columnIndex="2">
+            <HBox alignment="CENTER_LEFT">
+                <Label text="Total arrecadado" styleClass="stat-label"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <StackPane styleClass="icon-box-green">
+                    <Label text="💰" style="-fx-text-fill: #369883;"/>
+                </StackPane>
+            </HBox>
+            <HBox alignment="BASELINE_LEFT" spacing="6.0">
+                <Label fx:id="lblTotalArrecadado" text="207.000,00" styleClass="stat-value"/>
+                <Label text="MZN" styleClass="stat-unit"/>
+            </HBox>
+            <Label text="Receita de todos os carregamentos" styleClass="stat-note"/>
+        </VBox>
+    </GridPane>
+
+    <!-- Formulário de Novo Carregamento -->
+    <VBox styleClass="card">
+        <HBox alignment="CENTER_LEFT" spacing="12.0">
+            <padding>
+                <Insets top="20.0" right="22.0" bottom="0.0" left="22.0"/>
+            </padding>
+            <StackPane styleClass="card-title-icon">
+                <Label text="📦" style="-fx-text-fill: #657DA6;"/>
+            </StackPane>
+            <VBox spacing="2.0">
+                <Label text="Novo carregamento" styleClass="card-title"/>
+                <Label text="Preencha os detalhes do transporte e confirme a capacidade do veículo." styleClass="card-subtitle"/>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label text="* Campos obrigatórios" styleClass="required-note"/>
+        </HBox>
+
+        <GridPane hgap="18.0" vgap="16.0">
+            <padding>
+                <Insets top="20.0" right="22.0" bottom="22.0" left="22.0"/>
+            </padding>
+            <columnConstraints>
+                <ColumnConstraints percentWidth="33.33"/>
+                <ColumnConstraints percentWidth="33.33"/>
+                <ColumnConstraints percentWidth="33.33"/>
+            </columnConstraints>
+
+            <!-- Linha 1 -->
+            <VBox spacing="6.0" GridPane.rowIndex="0" GridPane.columnIndex="0">
+                <HBox spacing="3.0">
+                    <Label text="Cliente" styleClass="field-label"/>
+                    <Label text="*" styleClass="required-star"/>
+                </HBox>
+                <ComboBox fx:id="cmbClienteCarregamento" promptText="Seleccione o cliente" maxWidth="Infinity"/>
+            </VBox>
+
+            <VBox spacing="6.0" GridPane.rowIndex="0" GridPane.columnIndex="1">
+                <HBox spacing="3.0">
+                    <Label text="Veículo Utilizado" styleClass="field-label"/>
+                    <Label text="*" styleClass="required-star"/>
+                </HBox>
+                <ComboBox fx:id="cmbVeiculoCarregamento" promptText="Seleccione o veículo" maxWidth="Infinity"
+                          onAction="#aoSelecionarVeiculo"/>
+            </VBox>
+
+            <VBox spacing="4.0" GridPane.rowIndex="0" GridPane.columnIndex="2">
+                <Label text="Proprietário do Veículo" styleClass="field-label"/>
+                <TextField fx:id="txtProprietarioAuto" editable="false" disable="true"
+                           promptText="Preenchido automaticamente"/>
+                <Label text="Associado automaticamente ao veículo" style="-fx-font-size: 9.5px; -fx-text-fill: #98A4B5;"/>
+            </VBox>
+
+            <!-- Linha 2 -->
+            <VBox spacing="6.0" GridPane.rowIndex="1" GridPane.columnIndex="0">
+                <HBox spacing="3.0">
+                    <Label text="Quantidade de Mercadoria (Toneladas)" styleClass="field-label"/>
+                    <Label text="*" styleClass="required-star"/>
+                </HBox>
+                <TextField fx:id="txtQuantidadeCarga" promptText="Ex.: 1.5"/>
+            </VBox>
+
+            <VBox spacing="6.0" GridPane.rowIndex="1" GridPane.columnIndex="1">
+                <HBox spacing="3.0">
+                    <Label text="Local de Origem" styleClass="field-label"/>
+                    <Label text="*" styleClass="required-star"/>
+                </HBox>
+                <TextField fx:id="txtOrigem" promptText="Ex.: Maputo"/>
+            </VBox>
+
+            <VBox spacing="6.0" GridPane.rowIndex="1" GridPane.columnIndex="2">
+                <HBox spacing="3.0">
+                    <Label text="Destino" styleClass="field-label"/>
+                    <Label text="*" styleClass="required-star"/>
+                </HBox>
+                <TextField fx:id="txtDestino" promptText="Ex.: Matola"/>
+            </VBox>
+
+            <!-- Banner de Alerta de Capacidade (visível quando carga > capacidade) -->
+            <HBox fx:id="boxAlertaCapacidade" alignment="CENTER_LEFT" spacing="12.0"
+                  visible="false" managed="false"
+                  styleClass="capacity-warning"
+                  GridPane.rowIndex="2" GridPane.columnIndex="0" GridPane.columnSpan="3">
+                <Label text="⚠" style="-fx-text-fill: #CC7373; -fx-font-size: 16px;"/>
+                <VBox spacing="2.0">
+                    <Label fx:id="lblMensagemAlerta"
+                           text="Aviso: A carga (3t) ultrapassa a capacidade máxima do veículo selecionado (2t)."
+                           styleClass="capacity-warning-title"/>
+                    <Label text="Reduza a quantidade de mercadoria ou seleccione um veículo com maior capacidade."
+                           styleClass="capacity-warning-sub"/>
+                </VBox>
+            </HBox>
+
+            <!-- Linha 3 -->
+            <VBox spacing="6.0" GridPane.rowIndex="3" GridPane.columnIndex="0">
+                <HBox spacing="3.0">
+                    <Label text="Data" styleClass="field-label"/>
+                    <Label text="*" styleClass="required-star"/>
+                </HBox>
+                <DatePicker fx:id="dpDataCarregamento" maxWidth="Infinity"/>
+            </VBox>
+
+            <VBox spacing="6.0" GridPane.rowIndex="3" GridPane.columnIndex="1">
+                <HBox spacing="3.0">
+                    <Label text="Valor Cobrado (MZN)" styleClass="field-label"/>
+                    <Label text="*" styleClass="required-star"/>
+                </HBox>
+                <TextField fx:id="txtValorCobrado" promptText="Ex.: 15000.00"/>
+            </VBox>
+        </GridPane>
+
+        <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="form-footer">
+            <Label text="🛡  Validação automática da capacidade máxima antes do registo."
+                   style="-fx-font-size: 10.5px; -fx-text-fill: #A1ABBA;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button fx:id="btnRegistarCarregamento" text="📦  Registar Carregamento"
+                    styleClass="btn-primary" onAction="#registarCarregamento"/>
+        </HBox>
+    </VBox>
+
+    <!-- Tabela de Carregamentos com Filtro por Proprietário -->
+    <VBox styleClass="card">
+        <HBox alignment="CENTER_LEFT" spacing="12.0">
+            <padding>
+                <Insets top="18.0" right="22.0" bottom="14.0" left="22.0"/>
+            </padding>
+            <Label text="Carregamentos realizados" styleClass="card-title"/>
+            <Label fx:id="lblBadgeCarregamentos" text="6" styleClass="count-badge"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <TextField fx:id="txtPesquisarCarregamento" prefWidth="230.0" promptText="Pesquisar cliente, matrícula ou rota..."/>
+        </HBox>
+
+        <!-- Barra de Filtro por Proprietário (Requisito 12) -->
+        <HBox alignment="CENTER_LEFT" spacing="10.0"
+              style="-fx-background-color: #FDFDFE; -fx-border-color: #EDF0F5 transparent #EDF0F5 transparent; -fx-padding: 11px 22px;">
+            <Label text="👥  Filtrar transportes por Proprietário:" style="-fx-font-size: 11px; -fx-text-fill: #8B9AB0;"/>
+            <ComboBox fx:id="cmbFiltroProprietario" prefWidth="240.0" promptText="Todos os proprietários"
+                      onAction="#filtrarPorProprietario"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="Limpar filtro ✕" styleClass="btn-secondary" onAction="#limparFiltroProprietario"/>
+        </HBox>
+
+        <TableView fx:id="tabelaCarregamentos" prefHeight="300.0">
+            <columns>
+                <TableColumn fx:id="colCarrData" text="Data" prefWidth="110.0"/>
+                <TableColumn fx:id="colCarrCliente" text="Cliente" prefWidth="180.0"/>
+                <TableColumn fx:id="colCarrVeiculo" text="Veículo" prefWidth="120.0"/>
+                <TableColumn fx:id="colCarrProprietario" text="Proprietário" prefWidth="180.0"/>
+                <TableColumn fx:id="colCarrCarga" text="Carga (t)" prefWidth="95.0"/>
+                <TableColumn fx:id="colCarrRota" text="Origem → Destino" prefWidth="180.0"/>
+                <TableColumn fx:id="colCarrValor" text="Valor Cobrado (MZN)" prefWidth="150.0"/>
+            </columns>
+        </TableView>
+    </VBox>
+</VBox>

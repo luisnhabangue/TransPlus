@@ -5,12 +5,14 @@
 package model;
 
 import java.time.LocalDate;
+import java.io.Serializable;
 
 /**
  *
  * @author sagaz
  */
-public class Carregamento implements Comparable<Carregamento> {
+public class Carregamento implements Comparable<Carregamento>, Serializable {
+    private static final long serialVersionUID = 1L;
     private Long idCarregamento;
     private Cliente clienteSolicitador;
     private Veiculo veiculoUsado;
@@ -94,9 +96,13 @@ public class Carregamento implements Comparable<Carregamento> {
     public void setCustoCarregamento(Double custoCarregamento) {
         this.custoCarregamento = custoCarregamento;
     }
+
+    public Proprietario getProprietarioVeiculo() {
+        return veiculoUsado == null ? null : veiculoUsado.getProprietario();
+    }
+
     @Override
     public int compareTo(Carregamento other) {
-        // Compara diretamente as matrículas
         return Long.compare(this.idCarregamento, other.idCarregamento);
     }
     

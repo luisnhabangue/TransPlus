@@ -4,13 +4,16 @@
  */
 package model;
 
+import java.io.Serializable;
+import java.util.Locale;
 import model.enums.TipoVeiculo;
 
 /**
  *
  * @author sagaz
  */
-public class Veiculo implements Comparable<Veiculo>{
+public class Veiculo implements Comparable<Veiculo>, Serializable {
+   private static final long serialVersionUID = 1L;
    // private Long id;
     private String matricula;
     private String marca;
@@ -81,7 +84,10 @@ public class Veiculo implements Comparable<Veiculo>{
 
     @Override
     public int compareTo(Veiculo o) {
-        return this.matricula.compareTo(o.matricula);
+        int porCapacidade = Double.compare(capacidadeCarga, o.capacidadeCarga);
+        return porCapacidade != 0
+                ? porCapacidade
+                : matricula.toUpperCase(Locale.ROOT).compareTo(o.matricula.toUpperCase(Locale.ROOT));
     }
     
     

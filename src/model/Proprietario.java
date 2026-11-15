@@ -6,12 +6,14 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.io.Serializable;
 
 /**
  *
  * @author sagaz
  */
-public class Proprietario implements Comparable<Proprietario>{
+public class Proprietario implements Comparable<Proprietario>, Serializable {
+    private static final long serialVersionUID = 1L;
   //  private Long id;
     private String documentoId;
     private String nome;
@@ -34,7 +36,17 @@ public class Proprietario implements Comparable<Proprietario>{
     }
 
     public void setVeiculos(List<Veiculo> veiculos) {
-        this.veiculos = veiculos;
+        this.veiculos = veiculos == null ? new ArrayList<>() : veiculos;
+    }
+
+    public void adicionarVeiculo(Veiculo veiculo) {
+        if (veiculo != null && !veiculos.contains(veiculo)) {
+            veiculos.add(veiculo);
+        }
+    }
+
+    public void removerVeiculo(Veiculo veiculo) {
+        veiculos.remove(veiculo);
     }
     
 
@@ -65,8 +77,7 @@ public class Proprietario implements Comparable<Proprietario>{
     @Override
     public int compareTo(Proprietario o) {
         return this.documentoId.compareTo(o.documentoId);
-        
-        }
+    }
     
     
 }

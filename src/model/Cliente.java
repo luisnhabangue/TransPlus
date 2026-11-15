@@ -4,11 +4,14 @@
  */
 package model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author sagaz
  */
-public class Cliente implements Comparable<Cliente>{
+public class Cliente implements Comparable<Cliente>, Serializable {
+    private static final long serialVersionUID = 1L;
     private Long id;
     private  String nome;
     private String contacto;
@@ -55,8 +58,8 @@ public class Cliente implements Comparable<Cliente>{
 
     @Override
     public int compareTo(Cliente o) {
-return Long.compare(this.id, o.id);
-        }
+        return Long.compare(this.id, o.id);
+    }
 
     
     @Override

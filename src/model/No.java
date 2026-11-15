@@ -6,13 +6,15 @@ package model;
 
 
 import java.util.Objects;
+import java.io.Serializable;
 
 /**
  *
  * @author sagaz
  * @param <T>
  */
-public class No <T extends Comparable<T>> {
+public class No<T extends Comparable<T>> implements Serializable {
+    private static final long serialVersionUID = 1L;
     
     private T no;
     private No<T> noEsquerdo;

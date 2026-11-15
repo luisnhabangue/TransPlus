@@ -17,6 +17,8 @@ public enum TipoVeiculo {
     private TipoVeiculo(String rotulo) {
         this.rotulo = rotulo;
     }
-    
-    
+
+    public String getRotulo() {
+        return rotulo;
+    }
 }

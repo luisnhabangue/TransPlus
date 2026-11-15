@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="22.0" stylesheets="@../css/styles.css"
+      xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controller.ClientesController">
+
+    <!-- Cabeçalho -->
+    <HBox alignment="CENTER_LEFT">
+        <VBox spacing="4.0">
+            <Label text="RELAÇÕES QUE MOVEM NEGÓCIOS" styleClass="eyebrow"/>
+            <Label text="Clientes" styleClass="page-title"/>
+            <Label text="Todos os seus clientes, contactos e localizações num só lugar." styleClass="page-description"/>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="+  Novo Cliente" styleClass="btn-primary" onAction="#limparFormulario"/>
+    </HBox>
+
+    <!-- Cartões KPI -->
+    <GridPane hgap="18.0">
+        <columnConstraints>
+            <ColumnConstraints percentWidth="33.33"/>
+            <ColumnConstraints percentWidth="33.33"/>
+            <ColumnConstraints percentWidth="33.33"/>
+        </columnConstraints>
+
+        <VBox spacing="6.0" styleClass="stat-card" GridPane.columnIndex="0">
+            <HBox alignment="CENTER_LEFT">
+                <Label text="Clientes registados" styleClass="stat-label"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <StackPane styleClass="icon-box-blue">
+                    <Label text="🏢" style="-fx-text-fill: #3A60BC;"/>
+                </StackPane>
+            </HBox>
+            <Label fx:id="lblTotalClientes" text="06" styleClass="stat-value"/>
+            <Label text="Relações de confiança, todos os dias" styleClass="stat-note"/>
+        </VBox>
+
+        <VBox spacing="6.0" styleClass="stat-card" GridPane.columnIndex="1">
+            <HBox alignment="CENTER_LEFT">
+                <Label text="Localidades abrangidas" styleClass="stat-label"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <StackPane styleClass="icon-box-orange">
+                    <Label text="📍" style="-fx-text-fill: #DD7D36;"/>
+                </StackPane>
+            </HBox>
+            <Label fx:id="lblTotalLocalidades" text="04" styleClass="stat-value"/>
+            <Label text="A aproximar negócios em Moçambique" styleClass="stat-note"/>
+        </VBox>
+
+        <VBox spacing="6.0" styleClass="stat-card" GridPane.columnIndex="2">
+            <HBox alignment="CENTER_LEFT">
+                <Label text="Serviços prestados" styleClass="stat-label"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <StackPane styleClass="icon-box-green">
+                    <Label text="📦" style="-fx-text-fill: #369883;"/>
+                </StackPane>
+            </HBox>
+            <Label fx:id="lblServicosPrestados" text="06" styleClass="stat-value"/>
+            <Label text="Carregamentos realizados para clientes" styleClass="stat-note"/>
+        </VBox>
+    </GridPane>
+
+    <!-- Formulário de Cliente -->
+    <VBox styleClass="card">
+        <HBox alignment="CENTER_LEFT" spacing="12.0">
+            <padding>
+                <Insets top="20.0" right="22.0" bottom="0.0" left="22.0"/>
+            </padding>
+            <StackPane styleClass="card-title-icon">
+                <Label text="🏢" style="-fx-text-fill: #657DA6;"/>
+            </StackPane>
+            <VBox spacing="2.0">
+                <Label fx:id="lblTituloFormCliente" text="Cadastrar cliente" styleClass="card-title"/>
+                <Label text="Preencha os dados para adicionar ou editar um cliente." styleClass="card-subtitle"/>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label text="* Campos obrigatórios" styleClass="required-note"/>
+        </HBox>
+
+        <GridPane hgap="18.0" vgap="16.0">
+            <padding>
+                <Insets top="20.0" right="22.0" bottom="22.0" left="22.0"/>
+            </padding>
+            <columnConstraints>
+                <ColumnConstraints percentWidth="33.33"/>
+                <ColumnConstraints percentWidth="33.33"/>
+                <ColumnConstraints percentWidth="33.33"/>
+            </columnConstraints>
+
+            <VBox spacing="6.0" GridPane.columnIndex="0">
+                <HBox spacing="3.0">
+                    <Label text="Nome do Cliente / Empresa" styleClass="field-label"/>
+                    <Label text="*" styleClass="required-star"/>
+                </HBox>
+                <TextField fx:id="txtNomeCliente" promptText="Ex.: Mercearia Boa Esperança"/>
+            </VBox>
+
+            <VBox spacing="6.0" GridPane.columnIndex="1">
+                <HBox spacing="3.0">
+                    <Label text="Contacto" styleClass="field-label"/>
+                    <Label text="*" styleClass="required-star"/>
+                </HBox>
+                <TextField fx:id="txtContactoCliente" promptText="+258 84 111 2233"/>
+            </VBox>
+
+            <VBox spacing="6.0" GridPane.columnIndex="2">
+                <HBox spacing="3.0">
+                    <Label text="Localização (Cidade/Bairro)" styleClass="field-label"/>
+                    <Label text="*" styleClass="required-star"/>
+                </HBox>
+                <TextField fx:id="txtLocalizacaoCliente" promptText="Ex.: Maputo, Alto Maé"/>
+            </VBox>
+        </GridPane>
+
+        <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="form-footer">
+            <Label text="🛡  Informação organizada. Gestão simplificada."
+                   style="-fx-font-size: 10.5px; -fx-text-fill: #A1ABBA;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button fx:id="btnCancelarCliente" text="Cancelar" visible="false" managed="false"
+                    styleClass="btn-secondary" onAction="#limparFormulario"/>
+            <Button text="✓  Guardar Cliente" styleClass="btn-primary" onAction="#guardarCliente"/>
+        </HBox>
+    </VBox>
+
+    <!-- Tabela de Clientes -->
+    <VBox styleClass="card">
+        <HBox alignment="CENTER_LEFT" spacing="12.0">
+            <padding>
+                <Insets top="18.0" right="22.0" bottom="18.0" left="22.0"/>
+            </padding>
+            <Label text="Clientes registados" styleClass="card-title"/>
+            <Label fx:id="lblBadgeClientes" text="6" styleClass="count-badge"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <TextField fx:id="txtPesquisarCliente" prefWidth="230.0" promptText="Pesquisar cliente..."/>
+        </HBox>
+
+        <TableView fx:id="tabelaClientes" prefHeight="290.0">
+            <columns>
+                <TableColumn fx:id="colCliNome" text="Nome do Cliente / Empresa" prefWidth="320.0"/>
+                <TableColumn fx:id="colCliContacto" text="Contacto" prefWidth="210.0"/>
+                <TableColumn fx:id="colCliLocalizacao" text="Localização" prefWidth="280.0"/>
+                <TableColumn fx:id="colCliAcoes" text="Ações" prefWidth="150.0"/>
+            </columns>
+        </TableView>
+    </VBox>
+</VBox>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox prefWidth="440.0" spacing="16.0" styleClass="modal-card" stylesheets="@../css/styles.css"
+      xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controller.ReceitaModalController">
+
+    <HBox alignment="CENTER_LEFT">
+        <StackPane styleClass="icon-box-blue">
+            <Label text="💰" style="-fx-font-size: 16px;"/>
+        </StackPane>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="✕" styleClass="btn-secondary" onAction="#fecharModal"/>
+    </HBox>
+
+    <VBox spacing="4.0">
+        <Label text="Receita do veículo" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #24364F;"/>
+        <Label text="Resultado acumulado dos transportes realizados por este veículo." styleClass="card-subtitle"/>
+    </VBox>
+
+    <!-- Caixa Azul de Resumo Financeiro -->
+    <VBox spacing="8.0" styleClass="revenue-summary-box">
+        <Label fx:id="lblModalMatricula" text="Total Arrecadado pelo Veículo ABC-123-MC"
+               style="-fx-font-size: 11.5px; -fx-font-weight: bold; -fx-text-fill: #657DA5;"/>
+        <HBox alignment="BASELINE_LEFT" spacing="6.0">
+            <Label fx:id="lblModalTotalReceita" text="45.000,00" styleClass="revenue-big-number"/>
+            <Label text="MZN" style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #96A7C1;"/>
+        </HBox>
+        <Label fx:id="lblModalModeloTipo" text="🚛  Toyota Dyna · Carrinha de Carga"
+               style="-fx-font-size: 10.5px; -fx-text-fill: #94A4BB;"/>
+    </VBox>
+
+    <HBox>
+        <Label text="Proprietário" style="-fx-text-fill: #99A5B5; -fx-font-size: 11.5px;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="lblModalProprietario" text="António João Machava"
+               style="-fx-text-fill: #48566D; -fx-font-weight: bold; -fx-font-size: 11.5px;"/>
+    </HBox>
+
+    <HBox>
+        <Label text="Transportes realizados" style="-fx-text-fill: #99A5B5; -fx-font-size: 11.5px;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="lblModalQtdServicos" text="3"
+               style="-fx-text-fill: #48566D; -fx-font-weight: bold; -fx-font-size: 11.5px;"/>
+    </HBox>
+
+    <ListView fx:id="listaServicosVeiculo" prefHeight="130.0"
+              style="-fx-border-color: #EDF1F6; -fx-background-color: #FFFFFF;"/>
+
+    <Button text="✓  Entendido" maxWidth="Infinity" styleClass="btn-primary" onAction="#fecharModal"/>
+</VBox>

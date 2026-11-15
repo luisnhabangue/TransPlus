@@ -1,4 +1,3 @@
-/home/sagaz/Desktop/Projecto/EDA/TransPlus/src/Launcher.java
 /home/sagaz/Desktop/Projecto/EDA/TransPlus/src/Run.java
 /home/sagaz/Desktop/Projecto/EDA/TransPlus/src/TransCargaApplication.java
 /home/sagaz/Desktop/Projecto/EDA/TransPlus/src/controller/CarregamentosController.java
@@ -8,7 +7,6 @@
 /home/sagaz/Desktop/Projecto/EDA/TransPlus/src/controller/ProprietariosController.java
 /home/sagaz/Desktop/Projecto/EDA/TransPlus/src/controller/ReceitaModalController.java
 /home/sagaz/Desktop/Projecto/EDA/TransPlus/src/controller/VeiculosViewController.java
-/home/sagaz/Desktop/Projecto/EDA/TransPlus/src/dao/Ficheiro.java
 /home/sagaz/Desktop/Projecto/EDA/TransPlus/src/model/BinarySearchTree.java
 /home/sagaz/Desktop/Projecto/EDA/TransPlus/src/model/Carregamento.java
 /home/sagaz/Desktop/Projecto/EDA/TransPlus/src/model/Cliente.java
@@ -17,7 +15,6 @@
 /home/sagaz/Desktop/Projecto/EDA/TransPlus/src/model/Proprietario.java
 /home/sagaz/Desktop/Projecto/EDA/TransPlus/src/model/Veiculo.java
 /home/sagaz/Desktop/Projecto/EDA/TransPlus/src/model/enums/TipoVeiculo.java
-/home/sagaz/Desktop/Projecto/EDA/TransPlus/src/model/interfaces/BinarySearchTree.java
 /home/sagaz/Desktop/Projecto/EDA/TransPlus/src/model/interfaces/DAOInterface.java
 /home/sagaz/Desktop/Projecto/EDA/TransPlus/src/persistence/ArquivoDadosTransCargaDAO.java
 /home/sagaz/Desktop/Projecto/EDA/TransPlus/src/service/TransCargaService.java

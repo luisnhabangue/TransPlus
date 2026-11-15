@@ -5,7 +5,6 @@ model/Cliente.class
 model/Veiculo.class
 controller/ReceitaModalController.class
 controller/MainViewController.class
-Launcher.class
 model/DadosTransCarga.class
 persistence/ArquivoDadosTransCargaDAO.class
 model/enums/TipoVeiculo.class
@@ -13,8 +12,6 @@ model/No.class
 service/TransCargaService.class
 model/Carregamento.class
 controller/ProprietariosController.class
-dao/Ficheiro.class
-model/interfaces/BinarySearchTree.class
 model/interfaces/DAOInterface.class
 model/BinarySearchTree.class
 controller/VeiculosViewController.class
